@@ -1,67 +1,31 @@
-package banco;
+package Hospital;
 
-import java.util.ArrayList;
-import java.util.List;
+//Clase Tratamiento según UML
+public class Tratamiento {
+ private int idTratamiento;
+ private String nombreTratamiento;
+ private int duracionTratamiento;
+ private String efectoSecundario;
+ private TipoTratamiento tipoTratamiento;
 
-public class Banco {
-	private List<Cuenta> listaCuentas;
+ public Tratamiento(TipoTratamiento tipoTratamiento, int idTratamiento, String nombreTratamiento,
+                    int duracionTratamiento, String efectoSecundario) {
+     this.tipoTratamiento = tipoTratamiento;
+     this.idTratamiento = idTratamiento;
+     this.nombreTratamiento = nombreTratamiento;
+     this.duracionTratamiento = duracionTratamiento;
+     this.efectoSecundario = efectoSecundario;
+ }
 
-	/**
-	 * 
-	 */
-	public Banco() {
-		super();
-		this.listaCuentas =new ArrayList();
-	}
-	/**
-	 * Recibe como parámetro una referencia a un objeto Cuenta y 
-	 * permite adicionar un objeto cuenta a la lista de cuentas. 
-	 * @param cuenta
-	 */
-	public void agregarCuenta(Cuenta cuenta) {
-		this.listaCuentas.add(cuenta);
-	}
-	/**
-	 * Recibe como parámetros un long valor a depositar y una 
-     * referencia a un objeto de la clase Cuenta. Suma el valor del 
-     *monto al atributo saldo en el objeto referenciado.
-	 * @param monto
-	 * @param cuenta
-	 */
-	public void realizarDeposito(long monto, Cuenta cuenta) {
-		cuenta.deposito(monto);
-	}
-	/**
-	 *Recibe como parámetros un long valor a depositar y una 
-	 *referencia a un objeto de la clase Cuenta. Resta el valor del 
-	 *monto al atributo saldo en el objeto referenciado. 
-	 * @param monto
-	 * @param cuenta
-	 */
-	public void realizarRetiro(long monto, Cuenta cuenta) {
-		cuenta.retiro(monto);
-	} 
-	/**
-	 * Recibe como parámetro un entero numero de la cuenta a buscar. 
-	 *Busca la cuenta en la lista de cuentas. Si la encuentra retorna 
-     *una referencia al objeto de la cuenta encontrada. Si no la 
-     *encuentra retorna null. 
-	 * @param numero
-	 * @return
-	 */
-	public Cuenta buscarCuenta(int numero) {
-		for (Cuenta cuenta : listaCuentas) {
-			if(cuenta.getNumero() == numero)
-				return cuenta;
-		}
-		 return null;
-	}
-	/**
-	 * Muestra la información de todas las cuentas del banco
-	 */
-	public void mostrarCuentas() {
-		for (Cuenta cuenta : listaCuentas) {
-			System.out.println(cuenta);
-		}
-	}
+ // Método inventado (no definido en UML)
+ public String calcularEficacia(String resultado, Estado estado) {
+     if (estado == Estado.EN_REMISION) {
+         return "Alta";
+     } else if (estado == Estado.EN_TRATAMIENTO) {
+         return "Media";
+     } else {
+         return "Baja";
+     }
+ }
 }
+
