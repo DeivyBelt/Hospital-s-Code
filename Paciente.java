@@ -1,64 +1,48 @@
-package banco;
+package Hospital;
 
-public class Cuenta {
-	private int numero;
-	private Persona titular;
-	private long saldo;
-	/**
-	 * @param numero
-	 * @param titular
-	 * Asociación
-	 */
-	public Cuenta(int numero, Persona titular) {
-		super();
-		this.numero = numero;
-		this.titular = titular;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	public Persona getTitular() {
-		return titular;
-	}
-	public void setTitular(Persona titular) {
-		this.titular = titular;
-	}
-	public long getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(long saldo) {
-		this.saldo = saldo;
-	}
-	/**
-	 * Recibe como parámetro un dato de tipo long y permite sumar el valor al 
-	 *atributo saldo del objeto cuenta. 
-	 * @param monto
-	 */
-	public void deposito(long monto) {
-		this.saldo += monto;
-	}
-	/**
-	 * Recibe como parámetro un dato de tipo long y permite restar el valor al 
-	 *atributo saldo del objeto cuenta. 
-	 */
-	public void retiro(long monto) {
-		if(monto > this.saldo)
-			System.out.println("Error Yuca saldo insuficiente");
-		else  
-			this.saldo -= monto;
-	}
-	@Override
-	public String toString() {
-		return "Numero " + this.numero + " Titular " + this.titular + " Saldo " + this.saldo;
-	}
-	
-	
+import java.util.ArrayList;
+
+//Clase Paciente según UML
+public class Paciente {
+ private int id;
+ private String nombre;
+ private int edad;
+ private String genero;
+ private TipoCancer tipoCancer;
+ private Estado estado;
+
+ private ArrayList<Tratamiento> listaTratamientos;
+ private ArrayList<Examen> listaExamenes;
+
+ public Paciente(int id, String nombre, int edad, String genero,
+                 TipoCancer tipoCancer, Estado estado) {
+     this.id = id;
+     this.nombre = nombre;
+     this.edad = edad;
+     this.genero = genero;
+     this.tipoCancer = tipoCancer;
+     this.estado = estado;
+
+     listaTratamientos = new ArrayList<>();
+     listaExamenes = new ArrayList<>();
+ }
+
+ // Agregar examen
+ public void agregarExamen(Examen examen) {
+     listaExamenes.add(examen);
+ }
+
+ // Agregar tratamiento
+ public void agregarTratamiento(Tratamiento tratamiento) {
+     listaTratamientos.add(tratamiento);
+ }
+
+ public TipoCancer getTipoCancer() {
+     return tipoCancer;
+ }
+
+ public Estado getEstado() {
+     return estado;
+ }
 }
-
-
-
-
 
